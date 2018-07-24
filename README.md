@@ -1,9 +1,6 @@
 # TSOHA-harjoitustyö
 
-## Blood Bowl Match Reporting System
-
-[http://bb-mrs.herokuapp.com/](Live app at Heroku)
-
+## [Blood Bowl Match Reporting System](http://bb-mrs.herokuapp.com/)
 ### Description
 Blood Bowl is a board game that has two players field a team of fantasy races to play each other in a bloodier version of rugby. Team try to score goals during the game, with the team that has more goals scored by the end of the game winning the game.
 
