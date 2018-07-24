@@ -2,7 +2,7 @@
 
 ## Weekly Milestones
 ### Week 1
-Herokuapp is alive at [Herokuapp](bb-mrs.herokuapp.com), including [the demo page](bb-mrs.herokuapp.com/demo)
+Herokuapp is alive at [Herokuapp](http://bb-mrs.herokuapp.com/), including [the demo page](http://bb-mrs.herokuapp.com/demo)
 ## [Blood Bowl Match Reporting System](http://bb-mrs.herokuapp.com/)
 ### Description
 Blood Bowl is a board game that has two players field a team of fantasy races to play each other in a bloodier version of rugby. Team try to score goals during the game, with the team that has more goals scored by the end of the game winning the game.
