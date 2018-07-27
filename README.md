@@ -32,7 +32,8 @@ There are four main tables:
 
 Additionally, between a team and a contest, a team/contest table (R) is required.
 
-TBA: diagram image of db
+![First db diagram](https://github.com/Granigan/BBMRS/blob/master/images/first_db_diagram.jpg)
+*First database diagram*
 
 
 ### Links
