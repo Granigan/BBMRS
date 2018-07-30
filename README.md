@@ -5,7 +5,7 @@
 Project itself is now live on [Herokuapp](http://bb-mrs.herokuapp.com/). Teams can be added, listed and be given points.
 
 ### Week 1
-~~ Herokuapp is alive at Herokuapp, including the demo page. ~~ (Demo no longer available since week 2.)
+~~Herokuapp is alive at Herokuapp, including the demo page.~~ (Demo no longer available since week 2.)
 
 ## [Blood Bowl Match Reporting System](http://bb-mrs.herokuapp.com/)
 ### Description
@@ -23,14 +23,11 @@ Coaches can also create new contests for teams to sign up for, and different rep
 - Report a match result between your team and another team in the same contest
 - See various statistics / reports
 
-Also see [User Stories](documents/user_stories.md).
+Also see [User Stories](https://github.com/Granigan/BBMRS/blob/master/documentation/user_stories.md).
 
 
 ### Scope
 While each team is nearly unique, and tracking the progress of each team, and indeed each of its players is a vital part of the game, such a feature is beyond the scope of this project at this stage. Functionality will be limited to naming the team, choosing its race, and signing it up for the contests.
-
-### User Stories
-
 
 ### Database plan
 There are four main tables:
