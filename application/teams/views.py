@@ -1,5 +1,10 @@
-from application import app
-from flask import render_template, request
+from application import app, db
+from flask import redirect, render_template, request, url_for
+from application.teams.models import Team
+
+@app.route("/teams", methods=["GET"])
+def teams_index():
+    return render_template("teams/list.html", teams = Team.query.all())
 
 @app.route("/teams/new/")
 def teams_form():
@@ -7,6 +12,9 @@ def teams_form():
 
 @app.route("/teams/", methods=["POST"])
 def teams_create():
-    print(request.form.get("name"))
+    t = Team(request.form.get("name"))
 
-    return "hello again, world"
+    db.session().add(t)
+    db.session().commit()
+
+    return redirect(url_for("teams_index"))
