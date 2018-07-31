@@ -12,8 +12,13 @@
             <td>{{ team.points }}</td>
             <td>
                 <form method="POST" action="{{ url_for('teams_add_point', team_id=team.id) }}">
-                    <input type="submit" value="Add a point!"/>
+                    <input type="submit" value="Add a point"/>
             </form>
+            </td>
+            <td>
+                <form method="POST" action="{{ url_for('teams_subtract_point', team_id=team.id) }}">
+                    <input type="submit" value="Subtract a point"/>
+                </form>
             </td>
         </tr>
         {% endfor %}

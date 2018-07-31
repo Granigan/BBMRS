@@ -10,7 +10,7 @@ def teams_index():
 def teams_form():
     return render_template("teams/new.html")
 
-@app.route("/teams/<team_id>/", methods=["POST"])
+@app.route("/teams/add_point_<team_id>/", methods=["POST"])
 def teams_add_point(team_id):
 
     t = Team.query.get(team_id)
@@ -18,6 +18,16 @@ def teams_add_point(team_id):
     db.session().commit()
 
     return redirect(url_for("teams_index"))
+
+@app.route("/teams/subtract_point_<team_id>/", methods=["POST"])
+def teams_subtract_point(team_id):
+
+    t = Team.query.get(team_id)
+    t.points = t.points - 1
+    db.session().commit()
+
+    return redirect(url_for("teams_index"))
+
 
 @app.route("/teams/", methods=["POST"])
 def teams_create():
