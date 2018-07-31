@@ -5,6 +5,9 @@
         <tr>
             <th>Team</th>
             <th>Points</th>
+            <th>+</th>
+            <th>-</th>
+            <th>Coach</th>
         </tr>
         {% for team in teams %}
         <tr>
@@ -20,6 +23,7 @@
                     <input type="submit" value="Subtract a point"/>
                 </form>
             </td>
+            <td>{{ team.coach_id }}</td>
         </tr>
         {% endfor %}
     </table>

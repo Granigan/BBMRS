@@ -1,17 +1,16 @@
 from application import db
-from application.coaches.models import Coach
 
-class Team(db.Model):
+class Contest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
     onupdate=db.func.current_timestamp())
-
     name = db.Column(db.String(144), nullable=False)
-    points = db.Column(db.Integer, nullable=False)
-    coach_id = db.Column(db.Integer, nullable=False)
+    slots = db.Column(db.Integer)
+    available_slots = db.Column(db.Integer)
 
-    def __init__(self, name):
+    def __init__(self, name, slots):
         self.name = name
-        self.points = 0
-        self.coach_id = 1337
+        self.slots = slots
+        self.available_slots = slots
+
