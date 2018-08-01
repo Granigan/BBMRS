@@ -4,6 +4,7 @@
 ### Week 2
 Project itself is now live on [Herokuapp](http://bb-mrs.herokuapp.com/). Teams can be added and listed, and their points can be modified. Coach is also listed, but with no functionality yet.
 [User Stories](https://github.com/Granigan/BBMRS/blob/master/documentation/user_stories.md) document has also been added.
+This README has the concept image for database diagram.
 
 ### Week 1
 ~~Herokuapp is alive at Herokuapp, including the demo page.~~ (Demo no longer available since week 2.)
