@@ -8,10 +8,15 @@ class Team(db.Model):
     onupdate=db.func.current_timestamp())
 
     name = db.Column(db.String(144), nullable=False)
+    race = db.Column(db.String(144), nullable=False)
+    resurrect = db.Column(db.Boolean, nullable=False)
     points = db.Column(db.Integer, nullable=False)
-    coach_id = db.Column(db.Integer, nullable=False)
+    coach_name = db.Column(db.String, nullable=False)
 
     def __init__(self, name):
         self.name = name
         self.points = 0
-        self.coach_id = 1337
+        self.race = "missing"
+        self.coach_name = "default"
+        self.resurrect = 0
+

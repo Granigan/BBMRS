@@ -4,7 +4,9 @@
     <table>
         <tr>
             <th>Team</th>
+            <th>Race</th>
             <th>Points</th>
+            <th>Resurrection team</th>
             <th>+</th>
             <th>-</th>
             <th>Coach</th>
@@ -12,18 +14,20 @@
         {% for team in teams %}
         <tr>
             <td>{{ team.name }}</td>
+            <td>{{ team.race }}</td>
             <td>{{ team.points }}</td>
+            <td>{{ team.resurrect }}</td>
             <td>
                 <form method="POST" action="{{ url_for('teams_add_point', team_id=team.id) }}">
                     <input type="submit" value="Add a point"/>
-            </form>
+                </form>
             </td>
             <td>
                 <form method="POST" action="{{ url_for('teams_subtract_point', team_id=team.id) }}">
                     <input type="submit" value="Subtract a point"/>
                 </form>
             </td>
-            <td>{{ team.coach_id }}</td>
+            <td>{{ team.coach_name }}</td>
         </tr>
         {% endfor %}
     </table>
