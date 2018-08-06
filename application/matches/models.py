@@ -1,6 +1,9 @@
 from application import db
 
 class Match(db.Model):
+
+    __tablename__ = "match"
+    
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     #winning team id
