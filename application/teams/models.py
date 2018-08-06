@@ -1,5 +1,5 @@
 from application import db
-from application.coaches.models import Coach
+from application.auth.models import Coach
 
 class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)

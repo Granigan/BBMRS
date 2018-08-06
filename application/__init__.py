@@ -12,7 +12,7 @@ from application import views
 from application.teams import models
 from application.teams import views
 
-from application.coaches import models
+from application.auth import models
 from application.contests import models
 from application.matches import models
 
