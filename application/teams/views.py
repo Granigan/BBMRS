@@ -33,6 +33,10 @@ def teams_subtract_point(team_id):
 @app.route("/teams/", methods=["POST"])
 def teams_create():
     form = TeamForm(request.form)
+    
+    if not form.validate():
+        return render_template("teams/new.html", form=form)
+
     t = Team(name=form.name.data)
     t.race = form.race.data
     t.resurrect = form.resurrect.data
