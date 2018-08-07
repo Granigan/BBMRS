@@ -18,4 +18,21 @@ from application.auth import views
 from application.contests import models
 from application.matches import models
 
+# login
+from application.auth.models import Coach
+from os import urandom
+app.config["SECRET_KEY"] = urandom(32)
+
+from flask_login import LoginManager
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+login_manager.login_view = "auth_login"
+login_manager.login_message = "Please log in to use this functionality."
+
+@login_manager.user_loader
+def load_coach(coach_id):
+    return Coach.query.get(coach_id)
+
+# db creation
 db.create_all()

@@ -30,4 +30,3 @@ class Coach(db.Model):
 
     def is_authenticated(self):
         return True
-

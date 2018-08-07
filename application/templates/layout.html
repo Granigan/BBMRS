@@ -6,6 +6,14 @@
     </head>
 
     <body>
+        {% if current_user.is_authenticated %}
+        <p>
+            Logged in as {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Log out.</a>
+        </p>
+        {% else %}
+        <a href="{{ url_for('auth_login') }}">Log in</a>
+        {% endif %}
+
         <ul>
             <li><a href="{{ url_for('teams_index') }}">List teams</a></li>
             <li><a href="{{ url_for('teams_form') }}">Add a new team</a></li>
@@ -13,7 +21,7 @@
 
         {% block body %}
         <p>
-            Tähän tuodaan sisältö muualta
+            imported content here
         </p>
         {% endblock %}
     </body>
