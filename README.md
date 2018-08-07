@@ -1,6 +1,15 @@
 # TSOHA course project
 
 ## Weekly Milestones
+### Week 3
+You can now register at [Herokuapp](http://bb-mrs.herokuapp.com/auth/register), or login at [Herokuapp](http://bb-mrs.herokuapp.com/auth/login) with:
+UN: test
+pwd: test
+
+Users (a.k.a. coaches) are kept in their own table, teams in another. Team information can be created, read, updated, and deleted (CRUD).
+
+Heroku uses PostgreSQL.
+
 ### Week 2
 Project itself is now live on [Herokuapp](http://bb-mrs.herokuapp.com/). Teams can be added and listed, and their points can be modified. Coach is also listed, but with no functionality yet.
 [User Stories](https://github.com/Granigan/BBMRS/blob/master/documentation/user_stories.md) document has also been added.

@@ -2,6 +2,9 @@ from application import db
 from application.auth.models import Coach
 
 class Team(db.Model):
+
+    __tablename__ = "team"
+    
     # db details
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
