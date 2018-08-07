@@ -17,8 +17,8 @@ def teams_form():
 @app.route("/teams/add_point_<team_id>/", methods=["POST"])
 @login_required
 def teams_add_point(team_id):
-
     t = Team.query.get(team_id)
+
     t.points = t.points + 1
     db.session().commit()
 
@@ -27,8 +27,8 @@ def teams_add_point(team_id):
 @app.route("/teams/subtract_point_<team_id>/", methods=["POST"])
 @login_required
 def teams_subtract_point(team_id):
-
     t = Team.query.get(team_id)
+    
     t.points = t.points - 1
     db.session().commit()
 
@@ -51,5 +51,15 @@ def teams_create():
 
     db.session().add(t)
     db.session().commit()
+
+    return redirect(url_for("teams_index"))
+
+@app.route("/teams/delete_<team_id>", methods=["POST"])
+@login_required
+def teams_delete(team_id):
+    t = Team.query.get(team_id)
+
+    db.session.delete(t)
+    db.session.commit()
 
     return redirect(url_for("teams_index"))

@@ -7,9 +7,10 @@
             <th>Race</th>
             <th>Points</th>
             <th>Resurrection team</th>
-            <th>+</th>
-            <th>-</th>
+            <th>Points</th>
+            <th></th>
             <th>Coach</th>
+            <th>Delete team</th>
         </tr>
         {% for team in teams %}
         <tr>
@@ -19,15 +20,20 @@
             <td>{{ team.resurrect }}</td>
             <td>
                 <form method="POST" action="{{ url_for('teams_add_point', team_id=team.id) }}">
-                    <input type="submit" value="Add a point"/>
+                    <input type="submit" value="+"/>
                 </form>
             </td>
             <td>
                 <form method="POST" action="{{ url_for('teams_subtract_point', team_id=team.id) }}">
-                    <input type="submit" value="Subtract a point"/>
+                    <input type="submit" value="-"/>
                 </form>
             </td>
             <td>{{ team.account_id }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('teams_delete', team_id=team.id) }}">
+                    <input type="submit" value="DELETE!"/>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </table>
