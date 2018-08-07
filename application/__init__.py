@@ -2,11 +2,19 @@ from flask import Flask
 app = Flask(__name__)
 
 from flask_sqlalchemy import SQLAlchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///teams.db"
-app.config["SQLALCHEMY_ECHO"] = True
+
+import os
+
+# db config
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///teams.db"
+    app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
 
+# application functionality
 from application import views
 
 from application.teams import models
@@ -35,4 +43,7 @@ def load_coach(coach_id):
     return Coach.query.get(coach_id)
 
 # db creation
-db.create_all()
+try:
+    db.create_all()
+except:
+    pass
