@@ -16,7 +16,7 @@ def auth_login():
     password=form.password.data).first()
     if not coach:
         return render_template("auth/loginform.html", form = form,
-            error = "No such username or password")
+            error = "No such username or password.")
 
     login_user(coach)
     return redirect(url_for("index"))
