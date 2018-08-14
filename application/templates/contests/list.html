@@ -13,7 +13,7 @@
         </tr>
         {% for contest in contests %}
         <tr>
-            <td>{{ contest.name }}</td>
+            <td><a href="{{ url_for('contest_details', contest_id=contest.id) }}">{{ contest.name }}</a></td>
             <td>{{ contest.number_of_teams }}</td>
             <td>{{ contest.maximum_slots }}</td>
             <td>{{ contest.resurrect }}</td>
