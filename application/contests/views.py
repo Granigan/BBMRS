@@ -41,3 +41,10 @@ def contest_delete(contest_id):
     db.session.commit()
 
     return redirect(url_for("contests_index"))
+
+@app.route("/contests/details_<contest_id>", methods=['GET'])
+def contest_details(contest_id):
+    # add validation for checking if contest exists
+    c = Contest.query.get(contest_id)
+
+    return render_template("contests/details.html", contest = c)
