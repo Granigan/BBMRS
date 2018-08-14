@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('contest_create') }}">
+    <table>
+        <tr>
+            <td>
+                {{ form.name.label }}
+            </td>
+            <td>
+                {{ form.name }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.acronym.label }}
+            </td>
+            <td>
+                {{ form.acronym }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.acronym.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.maximum_slots.label }}
+            </td>
+            <td>
+                {{ form.maximum_slots }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.maximum_slots.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.resurrect.label }}
+            </td>
+            <td>
+                {{ form.resurrect }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Create contest"/>
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

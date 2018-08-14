@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>Contest</th>
+            <th>Teams</th>
+            <th>Maximum</th>
+            <th>Resurrection tournament</th>
+            <th>Tournament Runner</th>
+            <th></th>
+            <th>Delete Contest</th>
+        </tr>
+        {% for contest in contests %}
+        <tr>
+            <td>{{ contest.name }}</td>
+            <td>{{ contest.number_of_teams }}</td>
+            <td>{{ contest.maximum_slots }}</td>
+            <td>{{ contest.resurrect }}</td>
+            <td>{{ contest.account_id }}</td>
+            <td></td>
+            <td>
+                <form method="POST" action="{{ url_for('contest_delete', contest_id=contest.id) }}">
+                    <input type="submit" value="DELETE!"/>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

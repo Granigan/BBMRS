@@ -6,14 +6,6 @@ class Team(BaseWithName):
 
     __tablename__ = "team"
     
-    # db details
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-    onupdate=db.func.current_timestamp())
-
-    # team details
-    name = db.Column(db.String(144), nullable=False)
     race = db.Column(db.String(144), nullable=False)
     resurrect = db.Column(db.Boolean, nullable=False)
     points = db.Column(db.Integer, nullable=False)
