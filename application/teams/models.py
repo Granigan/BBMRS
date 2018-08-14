@@ -1,7 +1,8 @@
 from application import db
+from application.models import BaseWithName
 from application.auth.models import Coach
 
-class Team(db.Model):
+class Team(BaseWithName):
 
     __tablename__ = "team"
     
