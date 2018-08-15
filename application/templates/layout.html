@@ -9,7 +9,7 @@
 
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-            <a class="navbar-brand" href="{{ url_for('teams_index') }}">BB Match Reporting System</a>
+            <a class="navbar-brand" href="/">BB Match Reporting System</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,15 +22,22 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url_for('contests_index') }}">Contests</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{ url_for('teams_form') }}">Add Team</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{ url_for('contest_form') }}">Add Contest</a>
+                    </li>
+                    <li>
+                        <span class="navbar-text">
+                            Logged in as {{ current_user.name }}.
+                        </span>    
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('auth_logout') }}">Log out.</a>
                     </li>
                 </ul>
             </div>
-            Logged in as {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Log out.</a>      
             {% else %}
             <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
