@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from application import app, db
 from application.contests.models import Contest
 from application.contests.forms import ContestForm, TeamSignup
+from application.contestteam.models import ContestTeam
 from application.teams.models import Team
 
 @app.route("/contests", methods=["GET"])
@@ -55,10 +56,15 @@ def signup_form(contest_id):
     form = TeamSignup()
     form.find_user_teams(Team.query.all())
 
-#    if not form.validate():
-#        return render_template("contests/details.html", form=form)
-
     return render_template("contestteam/new.html", contest_id = contest_id, form=form)
 
-#@app.route("/contests/details_<contest_id>", methods=['POST'])
-#def 
+@app.route("/contests/details_<contest_id>", methods=['POST'])
+#@login_required
+def signed_up(contest_id):
+    form = TeamSignup(request.form)
+    ct = ContestTeam(team_id = form.user_teams.data, contest_id = contest_id)
+    
+    db.session.add(ct)
+    db.session.commit()
+
+    return redirect(url_for('contest_details', contest_id = contest_id))
