@@ -1,6 +1,13 @@
 # TSOHA course project
 
 ## Weekly Milestones
+### Week 4
+Due to misunderstanding, full CRUD wasn't implemented last week. Contest table now fills these requirements, including the individual read ability (follow the links from [Contest page](http://bb-mrs.herokuapp.com/contests).
+
+The Contest pages also received the largest advances, with the individual pages having the so far most complex SQL query, which finds details for the teams participating in the contest from team, account, and contestteam tables. With the contestteam table combining information from team and contest tables, deleting teams or contests required an update to ensure contestteam was also accordingly cleaned up.
+
+Basic Bootstrap is now included to make things a touch prettier.
+
 ### Week 3
 You can now register at [Herokuapp](http://bb-mrs.herokuapp.com/auth/register), or login at [Herokuapp](http://bb-mrs.herokuapp.com/auth/login) with:
 UN: test
