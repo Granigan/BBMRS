@@ -7,7 +7,7 @@ from application.contests.forms import ContestForm
 
 @app.route("/contests", methods=["GET"])
 def contests_index():
-    return render_template("contests/list.html", contests = Contest.query.all())
+    return render_template("contests/list.html", contests = Contest.find_contests_and_organisers())
 
 @app.route("/contests/new/")
 @login_required
@@ -43,7 +43,6 @@ def contest_delete(contest_id):
 
 @app.route("/contests/details_<contest_id>", methods=['GET'])
 def contest_details(contest_id):
-    # add validation for checking if contest exists
     c = Contest.query.get(contest_id)
 
     return render_template("contests/details.html", contest = c)

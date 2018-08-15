@@ -26,6 +26,8 @@ from application.auth import views
 from application.contests import models
 from application.contests import views
 
+from application.contestteam import models
+
 from application.matches import models
 
 # login

@@ -4,9 +4,10 @@
     <table>
         <tr>
             <th>Contest</th>
+            <th>Acronym</th>
+            <th>Resurrection Rules</th>
             <th>Teams</th>
             <th>Maximum</th>
-            <th>Resurrection tournament</th>
             <th>Tournament Runner</th>
             <th></th>
             <th>Delete Contest</th>
@@ -14,10 +15,11 @@
         {% for contest in contests %}
         <tr>
             <td><a href="{{ url_for('contest_details', contest_id=contest.id) }}">{{ contest.name }}</a></td>
-            <td>{{ contest.number_of_teams }}</td>
-            <td>{{ contest.maximum_slots }}</td>
+            <td>{{ contest.acronym }}</td>
             <td>{{ contest.resurrect }}</td>
-            <td>{{ contest.account_id }}</td>
+            <td>{{ contest.teams }}</td>
+            <td>{{ contest.slots }}</td>
+            <td>{{ contest.organiser }}</td>
             <td></td>
             <td>
                 <form method="POST" action="{{ url_for('contest_delete', contest_id=contest.id) }}">
