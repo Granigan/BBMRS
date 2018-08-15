@@ -2,6 +2,17 @@
 
 {% block body %}
     <h2>{{ contest.name }}</h2>
-    <p>List of teams signed up for the contest.</p>
+    <table>
+        <tr>
+            <th>Team</th>
+            <th>Race</th>
+            <th>Coach</th>
+        </tr>
+        {% for c in contests %}
+        <tr>
+            <td>{{ c.name }}</td>
+        </tr>
+        {% endfor %}        
+    </table>
     <a href="{{ url_for('signup_form', contest_id = contest.id) }}">Sign up for this contest!</a>
 {% endblock %}
