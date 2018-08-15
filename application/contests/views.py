@@ -50,16 +50,15 @@ def contest_details(contest_id):
     return render_template("contests/details.html", contest = c, contests = ContestTeam.find_signed_teams())
 
 @app.route("/contests/details_<contest_id>/signup")
-#@login_required
+@login_required
 def signup_form(contest_id):
-    c = Contest.query.get(contest_id)
     form = TeamSignup()
     form.find_user_teams(Team.query.all())
 
     return render_template("contestteam/new.html", contest_id = contest_id, form=form)
 
 @app.route("/contests/details_<contest_id>", methods=['POST'])
-#@login_required
+@login_required
 def signed_up(contest_id):
     form = TeamSignup(request.form)
     ct = ContestTeam(team_id = form.user_teams.data, contest_id = contest_id)

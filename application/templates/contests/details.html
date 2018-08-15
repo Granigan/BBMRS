@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <h2>{{ contest.name }}</h2>
+    <h2>{{ contest.name }}, for up to {{ contest.maximum_slots }} teams</h2>
     <table>
         <tr>
             <th>Team</th>
@@ -11,6 +11,8 @@
         {% for c in contests %}
         <tr>
             <td>{{ c.name }}</td>
+            <td>{{ c.race }}</td>
+            <td>{{ c.coach }}</td>
         </tr>
         {% endfor %}        
     </table>

@@ -15,13 +15,16 @@ class ContestTeam(Base):
 
     @staticmethod
     def find_signed_teams():
-        stmt = text("SELECT team.name FROM team, contestteam"
-                    " WHERE contestteam.contest_id = 2 AND team.id = contestteam.team_id"
-                    " ORDER BY team.name")
+        stmt = text("SELECT team.name, team.race, account.name"
+                    " FROM contestteam, team LEFT JOIN account"
+                    " ON account.id = team.account_id"
+                    " WHERE contestteam.contest_id = 2"
+                    " AND team.id = contestteam.team_id"
+                    " GROUP BY team.name ORDER BY team.name")
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({"name":row[0]})
+            response.append({"name":row[0], "race":row[1], "coach":row[2]})
 
         return response
