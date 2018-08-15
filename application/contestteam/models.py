@@ -20,7 +20,8 @@ class ContestTeam(Base):
                     " ON account.id = team.account_id"
                     " WHERE contestteam.contest_id = :id"
                     " AND team.id = contestteam.team_id"
-                    " GROUP BY team.name ORDER BY team.name").params(id=contest_id)
+                    " GROUP BY team.name, team.race, account.name"
+                    " ORDER BY team.name").params(id=contest_id)
         res = db.engine.execute(stmt)
 
         response = []
