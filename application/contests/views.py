@@ -22,7 +22,6 @@ def contest_create():
     if not form.validate():
         return render_template("contests/new.html", form=form)
 
-# tää ei kait futaa näin syystä mistä lie - pitää määritellä muut tiedot erikseen
     c = Contest(name=form.name.data, acronym=form.acronym.data, 
         maximum_slots=form.maximum_slots.data, resurrect=form.resurrect.data)
     c.account_id = current_user.id

@@ -7,7 +7,8 @@ from application.teams.forms import TeamForm
 
 @app.route("/teams", methods=["GET"])
 def teams_index():
-    return render_template("teams/list.html", teams = Team.query.all())
+#    return render_template("teams/list.html", teams = Team.query.all())
+    return render_template("teams/list.html", teams = Team.find_teams_and_coaches())
 
 @app.route("/teams/new/")
 @login_required
