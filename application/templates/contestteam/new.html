@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <form method="POST" action="{{ url_for('contest_details', contest_id = contest_id) }}">
+        <table>
+            <tr>
+                <td>
+                    {{ form.user_teams }}
+                </td>
+                <td>
+                    <input type="submit" value="Sign up!">
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

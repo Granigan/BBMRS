@@ -3,7 +3,8 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.contests.models import Contest
-from application.contests.forms import ContestForm
+from application.contests.forms import ContestForm, TeamSignup
+from application.teams.models import Team
 
 @app.route("/contests", methods=["GET"])
 def contests_index():
@@ -46,3 +47,18 @@ def contest_details(contest_id):
     c = Contest.query.get(contest_id)
 
     return render_template("contests/details.html", contest = c)
+
+@app.route("/contests/details_<contest_id>/signup")
+#@login_required
+def signup_form(contest_id):
+    c = Contest.query.get(contest_id)
+    form = TeamSignup()
+    form.find_user_teams(Team.query.all())
+
+#    if not form.validate():
+#        return render_template("contests/details.html", form=form)
+
+    return render_template("contestteam/new.html", contest_id = contest_id, form=form)
+
+#@app.route("/contests/details_<contest_id>", methods=['POST'])
+#def 
