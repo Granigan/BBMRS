@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from application import app, db
 from application.teams.models import Team
 from application.teams.forms import TeamForm
+from application.contestteam.models import ContestTeam
 
 @app.route("/teams", methods=["GET"])
 def teams_index():
@@ -58,6 +59,12 @@ def teams_create():
 @app.route("/teams/delete_<team_id>", methods=["POST"])
 @login_required
 def teams_delete(team_id):
+
+    for id in ContestTeam.find_contests_by_team(team_id):
+        ct = ContestTeam.query.get(id)
+        db.session.delete(ct)
+    db.session.commit()
+
     t = Team.query.get(team_id)
 
     db.session.delete(t)
