@@ -36,6 +36,13 @@ def contest_create():
 @app.route("/contests/delete_<contest_id>", methods=['POST'])
 @login_required
 def contest_delete(contest_id):
+    
+    for id in ContestTeam.find_signed_teams(contest_id):
+        ct = ContestTeam.query.get(id)
+        db.session.delete(ct)
+    
+    db.session.commit()
+    
     c = Contest.query.get(contest_id)
 
     db.session.delete(c)
@@ -47,7 +54,8 @@ def contest_delete(contest_id):
 def contest_details(contest_id):
     c = Contest.query.get(contest_id)
 
-    return render_template("contests/details.html", contest = c, contests = ContestTeam.find_signed_teams(contest_id))
+    return render_template("contests/details.html", contest = c,
+        contests = ContestTeam.find_signed_teams_with_details(contest_id))
 
 @app.route("/contests/details_<contest_id>/signup")
 @login_required

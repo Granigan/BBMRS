@@ -14,7 +14,7 @@ class ContestTeam(Base):
         self.contest_id = contest_id
 
     @staticmethod
-    def find_signed_teams(contest_id):
+    def find_signed_teams_with_details(contest_id):
 #        stmt = text("SELECT team.name, team.race, account.name"
 #                    " FROM contestteam, team LEFT JOIN account"
 #                    " ON account.id = team.account_id"
@@ -34,4 +34,16 @@ class ContestTeam(Base):
         for row in res:
             response.append({"name":row[0], "race":row[1], "coach":row[2]})
 
+        return response
+
+    @staticmethod
+    def find_signed_teams(contest_id):
+        stmt = text("SELECT contestteam.id FROM contestteam"
+                    " WHERE contestteam.contest_id = :id").params(id=contest_id)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for entry in res:
+            response.append(entry)
+        
         return response
