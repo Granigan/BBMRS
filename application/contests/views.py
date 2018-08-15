@@ -47,7 +47,7 @@ def contest_delete(contest_id):
 def contest_details(contest_id):
     c = Contest.query.get(contest_id)
 
-    return render_template("contests/details.html", contest = c, contests = ContestTeam.find_signed_teams())
+    return render_template("contests/details.html", contest = c, contests = ContestTeam.find_signed_teams(contest_id))
 
 @app.route("/contests/details_<contest_id>/signup")
 @login_required

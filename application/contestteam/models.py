@@ -14,13 +14,13 @@ class ContestTeam(Base):
         self.contest_id = contest_id
 
     @staticmethod
-    def find_signed_teams():
+    def find_signed_teams(contest_id):
         stmt = text("SELECT team.name, team.race, account.name"
                     " FROM contestteam, team LEFT JOIN account"
                     " ON account.id = team.account_id"
-                    " WHERE contestteam.contest_id = 2"
+                    " WHERE contestteam.contest_id = :id"
                     " AND team.id = contestteam.team_id"
-                    " GROUP BY team.name ORDER BY team.name")
+                    " GROUP BY team.name ORDER BY team.name").params(id=contest_id)
         res = db.engine.execute(stmt)
 
         response = []
