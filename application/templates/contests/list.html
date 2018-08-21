@@ -20,7 +20,7 @@
             <td>{{ contest.teams }}</td>
             <td>{{ contest.slots }}</td>
             <td>{{ contest.organiser }}</td>
-            {% if current_user.get_role() == ['ADMIN'] %}
+            {% if current_user.is_authenticated and current_user.get_role() == ['ADMIN'] %}
             <td></td>
             <td>
                 <form method="POST" action="{{ url_for('contest_delete', contest_id=contest.id) }}">
