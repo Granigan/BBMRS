@@ -1,6 +1,27 @@
 # TSOHA course project
 
+## Try it out!
+[Online at Heroku](http://bb-mrs.herokuapp.com/).
+Admin user:
+UN: testi
+PW: testi
+
+Normal user:
+UN: tester
+PW: tester
+
 ## Weekly Milestones
+### Week 5
+Authetication for Admins is now added. Only admins can:
+- Access Account Management
+- Delete Contests
+- Delete Teams
+- Delete Accounts
+
+Some usability considerations were made in an attempt to create feasible pipelines, and more are planned and on the way. Many of these are dependent on the few remaining pages to be added to the application and will be more visible in the future.
+
+Finally, first versions of the [User's Guide](https://github.com/Granigan/BBMRS/blob/master/documentation/manual.md) and the [Installation Guide](https://github.com/Granigan/BBMRS/blob/master/documentation/install.md) are now available.
+
 ### Week 4
 Due to misunderstanding, full CRUD wasn't implemented last week. Contest table now fills these requirements, including the individual read ability (follow the links from [Contest page](http://bb-mrs.herokuapp.com/contests).
 
