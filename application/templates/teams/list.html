@@ -7,7 +7,7 @@
             <th>Race</th>
             <th>Resurrection team</th>
             <th>Coach</th>
-            <th>Delete team</th>
+            <th></th>
         </tr>
         {% for team in teams %}
         <tr>
@@ -15,11 +15,13 @@
             <td>{{ team.race }}</td>
             <td>{{ team.resurrect }}</td>
             <td>{{ team.coach }}</td>
+            {% if current_user.get_role() == ['ADMIN'] %}
             <td>
                 <form method="POST" action="{{ url_for('teams_delete', team_id=team.id) }}">
                     <input type="submit" value="DELETE!"/>
                 </form>
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </table>

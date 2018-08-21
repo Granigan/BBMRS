@@ -34,7 +34,6 @@ def contest_create():
     return redirect(url_for("contests_index"))
 
 @app.route("/contests/delete_<contest_id>", methods=['POST'])
-@login_required()
 def contest_delete(contest_id):
     
     for id in ContestTeam.find_signed_teams(contest_id):

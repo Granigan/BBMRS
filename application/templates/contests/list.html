@@ -10,7 +10,7 @@
             <th>Maximum</th>
             <th>Tournament Runner</th>
             <th></th>
-            <th>Delete Contest</th>
+            <th></th>
         </tr>
         {% for contest in contests %}
         <tr>
@@ -20,12 +20,14 @@
             <td>{{ contest.teams }}</td>
             <td>{{ contest.slots }}</td>
             <td>{{ contest.organiser }}</td>
+            {% if current_user.get_role() == ['ADMIN'] %}
             <td></td>
             <td>
                 <form method="POST" action="{{ url_for('contest_delete', contest_id=contest.id) }}">
                     <input type="submit" value="DELETE!"/>
                 </form>
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </table>
