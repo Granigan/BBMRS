@@ -22,6 +22,6 @@ This feature is yet to be added.
 ### Admin Mode
 When logged in as admin, you can delete teams, contests, and by accessing the admin-only Account Management, even complete accounts. Note that deleting an account will cause all its teams and contests to be deleted as well.
 
-TBA:
-Team page with statistics
-Coach page with statistics
+### TBA:
+- Team page with statistics
+- Coach page with statistics
