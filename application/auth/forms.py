@@ -12,7 +12,7 @@ class RegisterForm(FlaskForm):
     coach_name = StringField("Coach name", [validators.Length(min=4)])
     username = StringField("Username", [validators.Length(min=4)])
     password = PasswordField("Password", [validators.Length(min=4)])
-    role = SelectField('User role',choices=[('coach', 'Coach'), ('admin', 'Admin')])
+    role = SelectField('User role',choices=[("COACH", "Coach"), ("ADMIN", "Admin")])
 
     class Meta:
         csrf = False

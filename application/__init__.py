@@ -14,22 +14,6 @@ else:
 
 db = SQLAlchemy(app)
 
-# application functionality
-from application import views
-
-from application.teams import models
-from application.teams import views
-
-from application.auth import models
-from application.auth import views
-
-from application.contests import models
-from application.contests import views
-
-from application.contestteam import models
-
-from application.matches import models
-
 # login
 from application.auth.models import Coach
 from os import urandom
@@ -49,25 +33,41 @@ def login_required(role="ANY"):
     def wrapper(fn):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
-            if not current_user.is_authenticated():
+            if not current_user.is_authenticated:
                 return login_manager.unauthorized()
-
+            
             unauthorized = False
 
-            if role !="ANY":
+            if role != "ANY":
                 unauthorized = True
-
-                for user_role in current_user.roles():
+                
+                for user_role in current_user.get_role():
                     if user_role == role:
                         unauthorized = False
                         break
-            
+
             if unauthorized:
                 return login_manager.unauthorized()
             
             return fn(*args, **kwargs)
         return decorated_view
     return wrapper
+
+# application functionality
+from application import views
+
+from application.teams import models
+from application.teams import views
+
+from application.auth import models
+from application.auth import views
+
+from application.contests import models
+from application.contests import views
+
+from application.contestteam import models
+
+from application.matches import models
 
 @login_manager.user_loader
 def load_coach(coach_id):

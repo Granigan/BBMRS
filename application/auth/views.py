@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 
-from application import app, db
+from application import app, db, login_required
 from application.auth.models import Coach
 from application.auth.forms import LoginForm, RegisterForm
 
@@ -43,3 +43,9 @@ def auth_register():
     db.session.commit()
 
     return redirect(url_for("auth_login"))
+
+@app.route("/auth/accounts", methods=["GET"])
+@login_required(role="ADMIN")
+def accounts_index():
+    return render_template("auth/list.html", accounts = Coach.query.all())
+

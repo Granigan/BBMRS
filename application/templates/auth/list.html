@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>Coach</th>
+            <th>Username</th>
+            <th>Role></th>
+            <th></th>
+            <th>Delete User</th>
+        </tr>
+        {% for account in accounts %}
+        <tr>
+            <td><a href="{{ url_for('account_details', account_id=account.id) }}">{{ account.name }}</a></td>
+            <td>{{ account.username }}</td>
+            <td>{{ account.role }}</td>
+            <td></td>
+            <td>
+                <form method="POST" action="{{ url_for('account_delete', account_id=account.id) }}">
+                    <input type="submit" value="DELETE!"/>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Deleting the account also deletes all of its teams and contests!</td>
+        </tr>
+    </table>
+{% endblock %}

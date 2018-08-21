@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.contests.models import Contest
 from application.contests.forms import ContestForm, TeamSignup
 from application.contestteam.models import ContestTeam
@@ -12,12 +12,12 @@ def contests_index():
     return render_template("contests/list.html", contests = Contest.find_contests_and_organisers())
 
 @app.route("/contests/new/")
-@login_required
+@login_required()
 def contest_form():
     return render_template("contests/new.html", form=ContestForm())
 
 @app.route("/contests", methods=["POST"])
-@login_required
+@login_required()
 def contest_create():
     form = ContestForm(request.form)
 
@@ -34,7 +34,7 @@ def contest_create():
     return redirect(url_for("contests_index"))
 
 @app.route("/contests/delete_<contest_id>", methods=['POST'])
-@login_required
+@login_required()
 def contest_delete(contest_id):
     
     for id in ContestTeam.find_signed_teams(contest_id):
@@ -58,7 +58,7 @@ def contest_details(contest_id):
         contests = ContestTeam.find_signed_teams_with_details(contest_id))
 
 @app.route("/contests/details_<contest_id>/signup")
-@login_required
+@login_required()
 def signup_form(contest_id):
     form = TeamSignup()
     form.find_user_teams(Team.query.all())
@@ -66,7 +66,7 @@ def signup_form(contest_id):
     return render_template("contestteam/new.html", contest_id = contest_id, form=form)
 
 @app.route("/contests/details_<contest_id>", methods=['POST'])
-@login_required
+@login_required()
 def signed_up(contest_id):
     form = TeamSignup(request.form)
     ct = ContestTeam(team_id = form.user_teams.data, contest_id = contest_id)

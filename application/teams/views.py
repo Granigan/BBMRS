@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.teams.models import Team
 from application.teams.forms import TeamForm
 from application.contestteam.models import ContestTeam
@@ -12,33 +12,33 @@ def teams_index():
     return render_template("teams/list.html", teams = Team.find_teams_and_coaches())
 
 @app.route("/teams/new/")
-@login_required
+@login_required()
 def teams_form():
     return render_template("teams/new.html", form = TeamForm())
 
-@app.route("/teams/add_point_<team_id>/", methods=["POST"])
-@login_required
-def teams_add_point(team_id):
-    t = Team.query.get(team_id)
+#@app.route("/teams/add_point_<team_id>/", methods=["POST"])
+#@login_required
+#def teams_add_point(team_id):
+#    t = Team.query.get(team_id)
+#
+#    t.points = t.points + 1
+#    db.session().commit()
+#
+#    return redirect(url_for("teams_index"))
 
-    t.points = t.points + 1
-    db.session().commit()
-
-    return redirect(url_for("teams_index"))
-
-@app.route("/teams/subtract_point_<team_id>/", methods=["POST"])
-@login_required
-def teams_subtract_point(team_id):
-    t = Team.query.get(team_id)
-    
-    t.points = t.points - 1
-    db.session().commit()
-
-    return redirect(url_for("teams_index"))
+#@app.route("/teams/subtract_point_<team_id>/", methods=["POST"])
+#@login_required
+#def teams_subtract_point(team_id):
+#    t = Team.query.get(team_id)
+#    
+#    t.points = t.points - 1
+#    db.session().commit()
+#
+#    return redirect(url_for("teams_index"))
 
 
 @app.route("/teams/", methods=["POST"])
-@login_required
+@login_required()
 def teams_create():
     form = TeamForm(request.form)
     
@@ -57,7 +57,7 @@ def teams_create():
     return redirect(url_for("teams_index"))
 
 @app.route("/teams/delete_<team_id>", methods=["POST"])
-@login_required
+@login_required()
 def teams_delete(team_id):
 
     for id in ContestTeam.find_contests_by_team(team_id):

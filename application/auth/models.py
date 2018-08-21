@@ -26,10 +26,10 @@ class Coach(BaseWithName):
     
     def is_anonymous(self):
         return False
-
+    
     def is_authenticated(self):
         return True
 
     def get_role(self):
-        return self.role
+        return [self.role]
     
