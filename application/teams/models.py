@@ -31,3 +31,17 @@ class Team(BaseWithName):
                 "coach":row[3], "id":row[4]})
 
         return response
+
+    @staticmethod
+    def find_teams_by_coach(coach_id):
+
+        stmt = text("SELECT team.id FROM team"
+                    " WHERE team.account_id = :id").params(id=coach_id)
+
+        res = db.engine.execute(stmt)
+    
+        response = []
+        for entry in res:
+            response.append(entry[0])
+
+        return response

@@ -44,7 +44,7 @@ class ContestTeam(Base):
 
         response = []
         for entry in res:
-            response.append(entry)
+            response.append(entry[0])
         
         return response
 
@@ -56,6 +56,18 @@ class ContestTeam(Base):
 
         response = []
         for entry in res:
-            response.append(entry)
+            response.append(entry[0])
 
         return response
+
+    @staticmethod
+    def remove_all_teams_from_contest(contest_id):
+        stmt = text("DELETE FROM contestteam"
+                " WHERE contestteam.contest_id = :id").params(id=contest_id)
+        db.engine.execute(stmt)
+
+    @staticmethod
+    def remove_team_from_all_contests(team_id):
+        stmt = text("DELETE FROM contestteam"
+                    " WHERE contestteam.team_id = :id").params(id=team_id)
+        db.engine.execute(stmt)

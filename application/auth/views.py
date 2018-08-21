@@ -4,6 +4,9 @@ from flask_login import login_user, logout_user
 from application import app, db, login_required
 from application.auth.models import Coach
 from application.auth.forms import LoginForm, RegisterForm
+from application.teams.models import Team
+from application.contestteam.models import ContestTeam
+from application.contests.models import Contest
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
@@ -59,6 +62,25 @@ def account_details(account_id):
 @app.route("/auth/delete_account_<account_id>", methods=['POST'])
 @login_required(role="ADMIN")
 def account_delete(account_id):
+    # remove teams from contests and delete them
+    for team_id in Team.find_teams_by_coach(account_id):
+        ContestTeam.remove_team_from_all_contests(team_id)
+        t = Team.query.get(team_id)
+        db.session.delete(t)
+        db.session.commit()
+
+    # empty and delete contests
+    for contest_id in Contest.find_contests_by_coach(account_id):
+        print("\n\n seeking contest id: " + str(contest_id))
+        ContestTeam.remove_all_teams_from_contest(contest_id)
+        c = Contest.query.get(contest_id)
+        db.session.delete(c)
+        db.session.commit()
+
+    # delete account
+    c = Coach.query.get(account_id)
+    db.session.delete(c)
+    db.session.commit()
 
     return redirect(url_for("accounts_index"))
 

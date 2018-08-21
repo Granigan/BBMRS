@@ -32,3 +32,17 @@ class Contest(BaseWithName):
             "teams":row[3], "slots":row[4], "organiser":row[5], "id":row[6]})
 
         return response
+
+    @staticmethod
+    def find_contests_by_coach(coach_id):
+        stmt = text("SELECT contest.id FROM contest"
+                    " WHERE contest.account_id = :id").params(id=coach_id)
+
+        res = db.engine.execute(stmt)
+        
+        response = []
+
+        for entry in res:
+            response.append(entry[0])
+
+        return response
