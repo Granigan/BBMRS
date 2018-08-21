@@ -2,17 +2,21 @@
 
 ## Try it out!
 [Online at Heroku](http://bb-mrs.herokuapp.com/).
-Admin user:
-UN: testi
-PW: testi
 
+Admin user:
+```
+UN: testi 
+PW: testi
+```
 Normal user:
+```
 UN: tester
 PW: tester
+```
 
 ## Weekly Milestones
 ### Week 5
-Authetication for Admins is now added. Only admins can:
+Authentication for Admins is now added. Only admins can:
 - Access Account Management
 - Delete Contests
 - Delete Teams
