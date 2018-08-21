@@ -42,6 +42,33 @@ login_manager.init_app(app)
 login_manager.login_view = "auth_login"
 login_manager.login_message = "Please log in to use this functionality."
 
+# user roles
+from functools import wraps
+
+def login_required(role="ANY"):
+    def wrapper(fn):
+        @wraps(fn)
+        def decorated_view(*args, **kwargs):
+            if not current_user.is_authenticated():
+                return login_manager.unauthorized()
+
+            unauthorized = False
+
+            if role !="ANY":
+                unauthorized = True
+
+                for user_role in current_user.roles():
+                    if user_role == role:
+                        unauthorized = False
+                        break
+            
+            if unauthorized:
+                return login_manager.unauthorized()
+            
+            return fn(*args, **kwargs)
+        return decorated_view
+    return wrapper
+
 @login_manager.user_loader
 def load_coach(coach_id):
     return Coach.query.get(coach_id)
