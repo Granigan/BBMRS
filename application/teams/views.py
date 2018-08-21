@@ -57,7 +57,7 @@ def teams_create():
     return redirect(url_for("teams_index"))
 
 @app.route("/teams/delete_<team_id>", methods=["POST"])
-@login_required()
+@login_required(role="ADMIN")
 def teams_delete(team_id):
 
     for id in ContestTeam.find_contests_by_team(team_id):
