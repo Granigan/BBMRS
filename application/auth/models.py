@@ -7,16 +7,16 @@ class Coach(BaseWithName):
     
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
-    admin = db.Column(db.Boolean, nullable=False)
+    role = db.Column(db.String(144), nullable=False)
 
     teams = db.relationship("Team", backref='account', lazy=True)
 
-    def __init__(self, name, username, password, admin):
+    def __init__(self, name, username, password, role):
         self.name = name
         self.username = username
         self.password = password
         self.points = 0
-        self.admin = admin
+        self.role = role
 
     def get_id(self):
         return self.id
@@ -30,6 +30,6 @@ class Coach(BaseWithName):
     def is_authenticated(self):
         return True
 
-    def is_admin(self):
-        return self.admin
+    def get_role(self):
+        return self.role
     

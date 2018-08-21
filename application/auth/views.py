@@ -37,7 +37,7 @@ def auth_register():
         return render_template("auth/registerform.html", form = form)
 
     c = Coach(name = form.coach_name.data, username = form.username.data, 
-        password = form.password.data, admin=form.admin.data)
+        password = form.password.data, role=form.role.data)
     
     db.session.add(c)
     db.session.commit()
