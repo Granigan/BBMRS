@@ -49,3 +49,16 @@ def auth_register():
 def accounts_index():
     return render_template("auth/list.html", accounts = Coach.query.all())
 
+@app.route("/auth/account_<account_id>", methods=["GET"])
+@login_required(role="ADMIN")
+def account_details(account_id):
+    a = Coach.query.get(account_id)
+
+    return render_template("auth/details.html", account = a)
+
+@app.route("/auth/delete_account_<account_id>", methods=['POST'])
+@login_required(role="ADMIN")
+def account_delete(account_id):
+
+    return redirect(url_for("accounts_index"))
+
