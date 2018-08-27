@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user
 
 from application import app, db, login_required
 from application.auth.models import Coach
-from application.auth.forms import LoginForm, RegisterForm
+from application.auth.forms import LoginForm, RegisterForm, ChangePasswordForm
 from application.teams.models import Team
 from application.contestteam.models import ContestTeam
 from application.contests.models import Contest
@@ -52,12 +52,17 @@ def auth_register():
 def accounts_index():
     return render_template("auth/list.html", accounts = Coach.query.all())
 
-@app.route("/auth/account_<account_id>", methods=["GET"])
+@app.route("/auth/account_<account_id>", methods=["GET", "POST"])
 @login_required(role="ADMIN")
 def account_details(account_id):
     a = Coach.query.get(account_id)
 
-    return render_template("auth/details.html", account = a)
+    if request.method == "POST":
+        form = ChangePasswordForm(request.form)
+        a.update_password(account_id=account_id, password=form.password.data)
+    
+    return render_template("auth/details.html", account = a, form = ChangePasswordForm())
+
 
 @app.route("/auth/delete_account_<account_id>", methods=['POST'])
 @login_required(role="ADMIN")

@@ -1,5 +1,6 @@
 from application import db
 from application.models import BaseWithName
+from sqlalchemy.sql import text
 
 class Coach(BaseWithName):
 
@@ -31,3 +32,9 @@ class Coach(BaseWithName):
     def get_role(self):
         return [self.role]
     
+    @staticmethod
+    def update_password(account_id, password):
+        stmt = text("UPDATE account SET password = :pw WHERE id = :id"
+                    ).params(pw=password, id=account_id)
+        db.engine.execute(stmt)
+

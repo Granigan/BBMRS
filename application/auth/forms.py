@@ -16,3 +16,9 @@ class RegisterForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+class ChangePasswordForm(FlaskForm):
+    password = PasswordField("New password")
+
+    class Meta:
+        csrf = False

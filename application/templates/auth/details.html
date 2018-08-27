@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<form method="POST" action="{{ url_for('account_details', account_id = account.id ) }}">
     <h2>Account {{ account.username }} as Coach {{ account.name }}</h2>
     <table>
         <tr>
@@ -21,6 +22,10 @@
         <tr>
             <td>Modified:</td><td>{{ account.date_modified }}</td>
         </tr>
+        <tr>
+            <td>{{ form.password }}</td>
+            <td><input type="submit" value = "Change PW"/></td>
+        </tr>
     </table>
-
+</form>
 {% endblock %}
