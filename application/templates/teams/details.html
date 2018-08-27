@@ -17,5 +17,21 @@
         </tr>
         {% endfor %}        
     </table>
+    <p></p>
+    <h3>Team statistics</h3>
+    <table>
+        <tr>
+            <th>Total games played</th>
+            <th>Games won</th>
+            <th>Games lost</th>
+            <th>Win percentage</th>
+        </tr>
+        <tr>
+            <td>{{ total[0] }}</td>
+            <td>{{ wins[0] }}</td>
+            <td>{{ losses[0] }}</td>
+            <td>{{ percentage[0] }}</td>
+        </tr>
+    </table>
 
 {% endblock %}

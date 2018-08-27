@@ -28,3 +28,57 @@ class Match(Base):
             response.append({"date":row[0], "winner":row[1], "loser":row[2]})
         
         return response
+
+    @staticmethod
+    def find_total_games_played_by_team(team_id):
+        stmt = text("SELECT count(id) FROM match"
+                    " WHERE winner_id = :id OR loser_id = :id").params(id=team_id)
+
+        res = db.engine.execute(stmt)
+        response = []
+
+        for entry in res:
+            response.append(entry[0])
+
+        return response
+    
+    @staticmethod
+    def find_wins_by_team(team_id):
+        stmt = text("SELECT count(id) FROM match"
+                    " WHERE winner_id = :id ").params(id=team_id)
+        
+        res = db.engine.execute(stmt)
+        response = []
+
+        for entry in res:
+            response.append(entry[0])
+
+        return response
+
+    @staticmethod
+    def find_losses_by_team(team_id):
+        stmt = text("SELECT count(id) FROM match"
+                    " WHERE loser_id = :id ").params(id=team_id)
+        
+        res = db.engine.execute(stmt)
+        response = []
+
+        for entry in res:
+            response.append(entry[0])
+
+        return response
+    
+    @staticmethod
+    def find_win_percentage_by_team(team_id):
+        stmt = text("SELECT (count(winner_id)* 100.0 /"
+                    " (SELECT count(*) FROM match"
+                    " WHERE winner_id = :id OR loser_id = :id))"
+                    " FROM match WHERE winner_id = :id").params(id=team_id)
+        
+        res = db.engine.execute(stmt)
+        response = []
+
+        for entry in res:
+            response.append(entry[0])
+
+        return response

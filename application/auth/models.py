@@ -9,8 +9,6 @@ class Coach(BaseWithName):
     password = db.Column(db.String(144), nullable=False)
     role = db.Column(db.String(144), nullable=False)
 
-# obsolete?    teams = db.relationship("Team", backref='account', lazy=True)
-
     def __init__(self, name, username, password, role):
         self.name = name
         self.username = username
