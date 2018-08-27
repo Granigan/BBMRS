@@ -28,6 +28,19 @@ class ContestTeam(Base):
             response.append({"name":row[0], "race":row[1], "coach":row[2]})
 
         return response
+    
+    @staticmethod
+    def find_amount_of_teams_by_contest(contest_id):
+        stmt = text("SELECT count(contestteam.id) FROM contestteam"
+                    " WHERE contestteam.contest_id = :id").params(id=contest_id)
+        res = db.engine.execute(stmt)
+
+        
+        for entry in res:
+            response = entry
+
+        return response
+
 
     @staticmethod
     def find_contests_by_team(team_id):

@@ -68,10 +68,15 @@ def signup_form(contest_id):
 @app.route("/contests/details_<contest_id>", methods=['POST'])
 @login_required()
 def signed_up(contest_id):
+
     form = TeamSignup(request.form)
-    ct = ContestTeam(team_id = form.user_teams.data, contest_id = contest_id)
-    
-    db.session.add(ct)
-    db.session.commit()
+    number_of_teams = ContestTeam.find_amount_of_teams_by_contest(contest_id=contest_id)[0]
+    if( number_of_teams < Contest.query.get(contest_id).get_max_slots()):
+        ct = ContestTeam(team_id = form.user_teams.data, contest_id = contest_id)
+        c = Contest.query.get(contest_id)
+        c.set_number_of_teams(number_of_teams + 1)
+
+        db.session.add(ct)
+        db.session.commit()
 
     return redirect(url_for('contest_details', contest_id = contest_id))

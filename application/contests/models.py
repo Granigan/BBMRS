@@ -18,6 +18,13 @@ class Contest(BaseWithName):
         self.maximum_slots = maximum_slots
         self.resurrect = resurrect
 
+    def get_max_slots(self):
+        return self.maximum_slots
+
+    def set_number_of_teams(self, number_of_teams):
+        self.number_of_teams = number_of_teams
+
+
     @staticmethod
     def find_contests_and_organisers():
         stmt = text("SELECT contest.name, contest.acronym, contest.resurrect,"
