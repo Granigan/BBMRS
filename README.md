@@ -1,8 +1,5 @@
-# TSOHA course project
-
-## Try it out!
-[Online at Heroku](http://bb-mrs.herokuapp.com/).
-
+# TSOHA Course Project
+## [Blood Bowl Match Reporting System](http://bb-mrs.herokuapp.com/)
 Admin user:
 ```
 UN: testi 
@@ -24,8 +21,7 @@ Additionally there were small fixes here and there, and the documents were updat
 [See all the weekly reports here](https://github.com/Granigan/BBMRS/blob/master/documentation/weekly_progress.md)
 
 
-## [Blood Bowl Match Reporting System](http://bb-mrs.herokuapp.com/)
-### Description
+### Project Description
 Blood Bowl is a board game that has two players field a team of fantasy races to play each other in a bloodier version of rugby. Team try to score goals during the game, with the team that has more goals scored by the end of the game winning the game.
 
 The Blood Bowl Match Reporting System (BBMRS) allows players ("coaches") to log in, create, update and delete their own team, and to sign it up for any amount of available contests. After signing up a team for a contest, coaches can then report the result of a match they've played with another team in the same contest.
