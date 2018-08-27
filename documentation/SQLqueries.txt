@@ -1,0 +1,105 @@
+find coach name by id
+SELECT account.name FROM account WHERE account.id=1;
+
+list teams with coach name, alphabetically
+SELECT team.name, team.race, team.resurrect, account.name, team.id 
+FROM team LEFT JOIN account ON account.id = account_id ORDER BY team.name;
+
+list contests with to name, alphabetically
+SELECT 	contest.name, contest.acronym, contest.number_of_teams, 
+contest.maximum_slots, contest.resurrect, account.name, contest.id
+FROM contest LEFT JOIN account ON account.id = account_id ORDER BY contest.name;
+
+list teams in a contest, alphabetically
+SELECT team.name FROM team, contestteam WHERE contestteam.contest_id = 2 AND team.id = contestteam.team_id ORDER BY team.name;
+
+list team names, races, and coaches in a contest 2, alphabetically
+*sqlite and postgresql, but clunky*
+SELECT team.name, team.race, account.name FROM contestteam, team LEFT JOIN account ON account.id = team.account_id WHERE contestteam.contest_id = 2 AND team.id = contestteam.team_id GROUP BY team.name, team.race, account.name ORDER BY team.name;
+
+*improved version x Atte*
+SELECT team.name, team.race, account.name FROM team, contestteam, account WHERE contestteam.contest_id = 2 AND contestteam.team_id = team.id AND account.id = team.account_id ORDER BY team.name;
+
+
+
+*sqlite only*
+SELECT team.name, team.race, account.name 
+ FROM contestteam, team LEFT JOIN account  ON account.id = team.account_id
+ WHERE contestteam.contest_id = 2  AND team.id = contestteam.team_id
+ GROUP BY team.name ORDER BY team.name;
+
+*(presumably) postgresql only*
+SELECT DISTINCT ON (team.name), team.name, team.race, account.name FROM contestteam, team LEFT JOIN account ON account.id = team.account_id WHERE contestteam.contest_id = 2  AND team.id = contestteam.team_id ORDER BY team.name;
+
+
+create team's match history: get all matches with a specific team in them, name winner and loser, and order by date:
+SELECT m.date_created AS date, w.name AS winner, l.name AS loser FROM match AS m LEFT JOIN team AS w ON m.winner_id = w.id LEFT JOIN team AS l ON m.loser_id = l.id WHERE m.winner_id = 1 OR m.loser_id = 1 order by date;
+
+
+create team stats: get amount of wins, losses, total played, win%
+SELECT count(id) AS total, count(winner_id) AS wins, count(loser_id) AS losses FROM (SELECT * FROM match WHERE winner_id = 4 OR loser_id = 4);
+
+
+win percentage:
+SELECT (count(winner_id)* 100.0 / (SELECT count(*) FROM match WHERE winner_id = 4 OR loser_id = 4)) FROM match WHERE winner_id = 4;
+
+
+Tables:
+
+CREATE TABLE account (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	name VARCHAR(144) NOT NULL, 
+	username VARCHAR(144) NOT NULL, 
+	password VARCHAR(144) NOT NULL, 
+	role VARCHAR(144) NOT NULL, 
+	PRIMARY KEY (id)
+);
+CREATE TABLE team (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	name VARCHAR(144) NOT NULL, 
+	race VARCHAR(144) NOT NULL, 
+	resurrect BOOLEAN NOT NULL, 
+	account_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	CHECK (resurrect IN (0, 1)), 
+	FOREIGN KEY(account_id) REFERENCES account (id)
+);
+CREATE TABLE contest (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	name VARCHAR(144) NOT NULL, 
+	acronym VARCHAR(144) NOT NULL, 
+	number_of_teams INTEGER, 
+	maximum_slots INTEGER NOT NULL, 
+	resurrect BOOLEAN NOT NULL, 
+	account_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	CHECK (resurrect IN (0, 1)), 
+	FOREIGN KEY(account_id) REFERENCES account (id)
+);
+CREATE TABLE contestteam (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	team_id INTEGER NOT NULL, 
+	contest_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(team_id) REFERENCES team (id), 
+	FOREIGN KEY(contest_id) REFERENCES contest (id)
+);
+CREATE TABLE "match" (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	winner_id INTEGER NOT NULL, 
+	loser_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(winner_id) REFERENCES team (id), 
+	FOREIGN KEY(loser_id) REFERENCES team (id)
+);
+

@@ -1,0 +1,17 @@
+MISSES CONTEST1-*MATCH CONNECTION:
+
+[Account|(pk)id:integer; date_created:datetime; date_modified:datetime; name:varchar(144); username:varchar(144); password:varchar(144); role:varchar(144)]
+
+[Contest|(pk)id:integer; date_created:datetime; date_modified:datetime; name:varchar(144); acronym:varchar(144); number_of_teams:integer; maximum_slots:integer; resurrect:boolean;(fk)account_id:integer]
+
+[ContestTeam|(pk)id:integer; date_created:datetime; date_modified:datetime; (fk)team_id:team.id;(fk)contest_id:contest.id]
+
+[Match|(pk)id:integer; date_created:datetime; date_modified:datetime; (fk)winner_id:account.id; (fk)loser_id:account.id]
+
+[Team|(pk)id:integer; date_created:datetime; date_modified:datetime; name:varchar(144); race:varchar(144); resurrect:boolean; (fk)account_id:account.id]
+
+[Account]1-*[Team]
+[Team]*-1[ContestTeam]
+[Team]2-*[Match]
+[ContestTeam]1-*[Contest]
+
