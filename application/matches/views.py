@@ -7,14 +7,14 @@ from application.teams.models import Team
 from application.matches.models import Match
 
 @app.route("/match/new")
-#@login_required()
+@login_required()
 def match_form():
     form = MatchForm()
     form.find_teams(Team.query.all())
     return render_template("matches/new.html", form=form)
 
 @app.route("/match", methods=["POST"])
-#@login_required()
+@login_required()
 def match_report():
     form = MatchForm(request.form)
 

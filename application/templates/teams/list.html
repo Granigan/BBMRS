@@ -11,7 +11,7 @@
         </tr>
         {% for team in teams %}
         <tr>
-            <td>{{ team.name }}</td>
+            <td><a href="{{ url_for('team_details', team_id=team.id) }}">{{ team.name }}</a></td>
             <td>{{ team.race }}</td>
             <td>{{ team.resurrect }}</td>
             <td>{{ team.coach }}</td>

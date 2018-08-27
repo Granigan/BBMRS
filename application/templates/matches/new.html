@@ -4,6 +4,14 @@
     <form method="POST" action="{{ url_for('match_report') }}">
         <table>
             <tr>
+                <th>
+                    {{ form.winner.label }}
+                </th>
+                <th>
+                    {{ form.loser.label }}
+                </th>
+            </tr>
+            <tr>
                 <td>
                     {{ form.winner }}
                 </td>

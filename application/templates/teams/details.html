@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h2>{{ team.name }}</h2>
+    <h3>Match history</h3>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Winner</th>
+            <th>Loser</th>
+        </tr>
+        {% for m in matches %}
+        <tr>
+            <td>{{ m.date }}</td>
+            <td>{{ m.winner }}</td>
+            <td>{{ m.loser }}</td>
+        </tr>
+        {% endfor %}        
+    </table>
+
+{% endblock %}

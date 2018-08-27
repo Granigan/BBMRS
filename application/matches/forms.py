@@ -2,8 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import SelectField, RadioField 
 
 class MatchForm(FlaskForm):
-    winner = SelectField('Team', coerce=int)
-    loser = SelectField('Team', coerce=int)
+    winner = SelectField('Winner', coerce=int)
+    loser = SelectField('Loser', coerce=int)
 
     def find_teams(self, teams):
         all_teams = []

@@ -5,10 +5,10 @@ from application import app, db, login_required
 from application.teams.models import Team
 from application.teams.forms import TeamForm
 from application.contestteam.models import ContestTeam
+from application.matches.models import Match
 
 @app.route("/teams", methods=["GET"])
 def teams_index():
-#    return render_template("teams/list.html", teams = Team.query.all())
     return render_template("teams/list.html", teams = Team.find_teams_and_coaches())
 
 @app.route("/teams/new/")
@@ -71,3 +71,10 @@ def teams_delete(team_id):
     db.session.commit()
 
     return redirect(url_for("teams_index"))
+
+@app.route("/teams/details_<team_id>", methods=['GET'])
+def team_details(team_id):
+    t = Team.query.get(team_id)
+
+    return render_template("teams/details.html", team = t,
+        matches = Match.find_match_history(team_id))
