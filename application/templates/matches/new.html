@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <form method="POST" action="{{ url_for('match_report') }}">
+        <table>
+            <tr>
+                <td>
+                    {{ form.winner }}
+                </td>
+                <td>
+                    {{ form.loser }}
+                </td>
+                <td>
+                    <input type="submit" value="Report match">
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

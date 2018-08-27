@@ -37,7 +37,7 @@ def contest_create():
 @login_required(role="ADMIN")
 def contest_delete(contest_id):
     
-    for id in ContestTeam.find_signed_teams(contest_id):
+    for id in ContestTeam.find_contests_by_team(contest_id):
         ct = ContestTeam.query.get(id)
         db.session.delete(ct)
     

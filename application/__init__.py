@@ -68,6 +68,7 @@ from application.contests import views
 from application.contestteam import models
 
 from application.matches import models
+from application.matches import views
 
 @login_manager.user_loader
 def load_coach(coach_id):

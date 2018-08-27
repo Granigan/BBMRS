@@ -5,12 +5,10 @@ class Match(Base):
 
     __tablename__ = "match"
     
-    #winning team id
-    winner = db.Column(db.Integer, nullable=False)
-    #losing team id
-    loser = db.Column(db.Integer, nullable=False)
+    winner_id = db.Column(db.Integer, nullable=False)
+    loser_id = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, winner, loser):
-        self.winner = winner
-        self.loser = loser
+    def __init__(self, winner_id, loser_id):
+        self.winner_id = winner_id
+        self.loser_id = loser_id
 

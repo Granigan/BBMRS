@@ -37,18 +37,6 @@ class ContestTeam(Base):
         return response
 
     @staticmethod
-    def find_signed_teams(contest_id):
-        stmt = text("SELECT contestteam.id FROM contestteam"
-                    " WHERE contestteam.contest_id = :id").params(id=contest_id)
-        res = db.engine.execute(stmt)
-
-        response = []
-        for entry in res:
-            response.append(entry[0])
-        
-        return response
-
-    @staticmethod
     def find_contests_by_team(team_id):
         stmt = text("SELECT contestteam.id FROM contestteam"
                     " WHERE contestteam.team_id = :id").params(id=team_id)
