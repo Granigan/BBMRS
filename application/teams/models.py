@@ -45,3 +45,36 @@ class Team(BaseWithName):
             response.append(entry[0])
 
         return response
+
+    @staticmethod
+    def find_team_names_by_coach(coach_id):
+
+        stmt = text("SELECT team.id, team.name FROM team"
+                    " WHERE team.account_id = :id").params(id=coach_id)
+
+        res = db.engine.execute(stmt)
+    
+        response = []
+        for row in res:
+            response.append((row[0], row[1]))
+
+        return response
+
+    @staticmethod
+    def find_eligible_teams_for_contest(contest_id, coach_id):
+
+        stmt = text("SELECT team.id, team.name"
+                    " FROM team WHERE team.account_id = :a_id"
+                    " AND team.id NOT IN"
+                    " (SELECT team.id FROM team, contestteam"
+                    " WHERE team.id = contestteam.team_id"
+                    " AND contestteam.contest_id = :c_id)"
+                ).params(c_id=contest_id, a_id=coach_id)
+
+        res = db.engine.execute(stmt)
+    
+        response = []
+        for row in res:
+            response.append((row[0], row[1]))
+
+        return response

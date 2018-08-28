@@ -76,7 +76,6 @@ def account_delete(account_id):
 
     # empty and delete contests
     for contest_id in Contest.find_contests_by_coach(account_id):
-        print("\n\n seeking contest id: " + str(contest_id))
         ContestTeam.remove_all_teams_from_contest(contest_id)
         c = Contest.query.get(contest_id)
         db.session.delete(c)

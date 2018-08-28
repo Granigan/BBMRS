@@ -61,7 +61,8 @@ def contest_details(contest_id):
 @login_required()
 def signup_form(contest_id):
     form = TeamSignup()
-    form.find_user_teams(Team.query.all())
+    form.find_user_teams(teams=Team.find_eligible_teams_for_contest(
+        contest_id=contest_id, coach_id=current_user.get_id()))
 
     return render_template("contestteam/new.html", contest_id = contest_id, form=form)
 

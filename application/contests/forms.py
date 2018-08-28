@@ -14,10 +14,7 @@ class TeamSignup(FlaskForm):
     user_teams = SelectField('Team', coerce=int)
 
     def find_user_teams(self, teams):
-        team_choices = []
-        for team in teams:
-            team_choices.append((team.id, team.name))
-        self.user_teams.choices = team_choices
+        self.user_teams.choices = teams
 
     class Meta:
         csrf = False
