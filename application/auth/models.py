@@ -38,3 +38,14 @@ class Coach(BaseWithName):
                     ).params(pw=password, id=account_id)
         db.engine.execute(stmt)
 
+    @staticmethod
+    def coach_exists(username):
+        stmt = text("SELECT count(*) FROM account WHERE account.username = :un").params(un=username)
+        res = db.engine.execute(stmt)
+        matches = False
+        
+        for row in res:
+            if(row[0]!=0):
+                matches = True
+
+        return matches

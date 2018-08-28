@@ -32,12 +32,15 @@ def auth_logout():
 @app.route("/auth/register", methods=["GET", "POST"])
 def auth_register():
     if request.method == "GET":
-        return render_template("/auth/registerform.html", form = RegisterForm())
+        return render_template("/auth/registerform.html", form = RegisterForm(), error = "")
     
     form = RegisterForm(request.form)
 
     if not form.validate():
-        return render_template("auth/registerform.html", form = form)
+        return render_template("auth/registerform.html", form = form, error = "")
+
+    if Coach.coach_exists(form.username.data):
+        return render_template("auth/registerform.html", form = form, error = "Username is already in use!")
 
     c = Coach(name = form.coach_name.data, username = form.username.data, 
         password = form.password.data, role=form.role.data)
