@@ -2,7 +2,8 @@
 
 {% block body %}
     <form method="POST" action="{{ url_for('contest_details', contest_id = contest_id) }}">
-        <table>
+            <p>Only the teams that are eligible to join the contest are listed. If the list is empty, all your eligible teams are already signed up for the contest (or you have no eligible teams.)</p>
+            <table>
             <tr>
                 <td>
                     {{ form.user_teams }}
