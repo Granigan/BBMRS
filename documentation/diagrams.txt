@@ -6,7 +6,7 @@ MISSES CONTEST1-*MATCH CONNECTION:
 
 [ContestTeam|(pk)id:integer; date_created:datetime; date_modified:datetime; (fk)team_id:team.id;(fk)contest_id:contest.id]
 
-[Match|(pk)id:integer; date_created:datetime; date_modified:datetime; (fk)winner_id:account.id; (fk)loser_id:account.id]
+[Match|(pk)id:integer; date_created:datetime; date_modified:datetime; (fk)winner_id:team.id; (fk)loser_id:team.id]
 
 [Team|(pk)id:integer; date_created:datetime; date_modified:datetime; name:varchar(144); race:varchar(144); resurrect:boolean; (fk)account_id:account.id]
 
