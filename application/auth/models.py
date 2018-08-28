@@ -6,7 +6,7 @@ class Coach(BaseWithName):
 
     __tablename__ = "account"
     
-    username = db.Column(db.String(144), nullable=False)
+    username = db.Column(db.String(144), nullable=False, index=True)
     password = db.Column(db.String(144), nullable=False)
     role = db.Column(db.String(144), nullable=False)
 

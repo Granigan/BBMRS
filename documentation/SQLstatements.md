@@ -14,6 +14,7 @@ CREATE TABLE account (
 	role VARCHAR(144) NOT NULL, 
 	PRIMARY KEY (id)
 );
+CREATE INDEX ix_account_username ON account (username);
 ```
 ```
 CREATE TABLE team (
