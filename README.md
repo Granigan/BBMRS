@@ -1,15 +1,19 @@
-# TSOHA Course Project
-## [Blood Bowl Match Reporting System](http://bb-mrs.herokuapp.com/)
-Admin user:
-```
-UN: testi 
-PW: testi
-```
-Normal user:
-```
-UN: tester
-PW: tester
-```
+# TSOHA: [Blood Bowl Match Reporting System](http://bb-mrs.herokuapp.com/)
+## Project Description
+This project is a course project for Helsinki University.
+
+[Blood Bowl](http://bloodbowl.com) is a board game that has two player fielding a team of fantasy races to play each other in a bloodier version of rugby. 
+
+The Blood Bowl Match Reporting System (BBMRS) allows users ("coaches") to create teams and contests, sign teams for contests, and report matches between teams. 
+
+Coaches and unathorised users ("fans") can also see participating teams and available contests, as well as seeing match history and statistics of each team.
+
+You can try out the system on [Heroku](http://bb-mrs.herokuapp.com) with the following logins. Note that you can also register a new account. (Logins won't work if someone has deleted the account or changed its password.)
+
+|Admin	|Coach	
+---|---|---
+username|testi|tester
+password|testi|tester
 
 ## Weekly Milestones
 ### "Week" 6
@@ -20,13 +24,19 @@ Additionally there were small fixes here and there, and the documents were updat
 
 [See all the weekly reports here](https://github.com/Granigan/BBMRS/blob/master/documentation/weekly_progress.md)
 
+## Documentation
+- [Installation Guide](https://github.com/Granigan/BBMRS/blob/master/documentation/install.md)
+- [User's Manual](https://github.com/Granigan/BBMRS/blob/master/documentation/manual.md)
+- [User Stories](https://github.com/Granigan/BBMRS/blob/master/documentation/user_stories.md)
+- [Weekly Progress Reports](https://github.com/Granigan/BBMRS/blob/master/documentation/weekly_progress.md)
+- [SQL Statements](https://github.com/Granigan/BBMRS/blob/master/documentation/SQLstatements.md)
+- [Database Diagram (image)](https://github.com/Granigan/BBMRS/blob/master/documentation/images/db_diagram2.png)
+- [Trello Board](https://trello.com/b/s6HjD0UO/tsoha-project-match-reporting-system-blood-bowl)
 
-### Project Description
-Blood Bowl is a board game that has two players field a team of fantasy races to play each other in a bloodier version of rugby. Team try to score goals during the game, with the team that has more goals scored by the end of the game winning the game.
 
-The Blood Bowl Match Reporting System (BBMRS) allows players ("coaches") to log in, create, update and delete their own team, and to sign it up for any amount of available contests. After signing up a team for a contest, coaches can then report the result of a match they've played with another team in the same contest.
-
-Coaches can also create new contests for teams to sign up for, and different reports of the contests and teams will be available through the web page; e.g. winning percentage, amount of games played, race distribution in a contest, and so forth.
+## Project Plan and Definitions
+### Scope
+In Blood Bowl virtually every team is nearly unique, and tracking the progress of each team, and indeed each of its players is a vital part of the game, such a feature is beyond the scope of this project at this stage. Functionality will be limited to naming the team, choosing its race, and signing it up for the contests.
 
 ### Functionality and user stories
 - Create and login as a coach
@@ -38,27 +48,29 @@ Coaches can also create new contests for teams to sign up for, and different rep
 
 Also see [User Stories](https://github.com/Granigan/BBMRS/blob/master/documentation/user_stories.md).
 
-### Scope
-While each team is nearly unique, and tracking the progress of each team, and indeed each of its players is a vital part of the game, such a feature is beyond the scope of this project at this stage. Functionality will be limited to naming the team, choosing its race, and signing it up for the contests.
-
 ### Database plan
 There are four main tables:
 - Account (CRUD)
+Accounts can be Created (registered), Read (by admin), Updated (pw update by admin), and Deleted (by admin).
 - Team (CRD)
+Teams can be Created, Read, and Deleted (by admin).
 - Contest (CRUD)
-- Match (CR)
+Contests can be Created, Read, Updated (participating team count is updated on sign up), and Deleted (by admin).
+- Match (C)
+Matches are Created and used for team statistics and history.
 
-Additionally, between a team and a contest, a team/contest table (R) is required.
+Additionally, between a team and a contest, a team/contest table (C) is required.
 
 ![db diagram](https://github.com/Granigan/BBMRS/blob/master/documentation/images/db_diagram2.png)
 
-### External Links
-[Trello board for the project](https://trello.com/b/s6HjD0UO/tsoha-project-match-reporting-system-blood-bowl)
-
-
-### Features for future versions
-- Choose race from a table
+## (Missing) Features for Future Versions
+- Choose race from a selection
 - Support for players in the team, including their statistics, ie. team roster
 - Match report confirmation/validation from the other team via email
 - Race specific team roster validation
 - Various contest forms
+- Team eligibility validation based on contest rules
+- Contest score tracking via reported matches
+- Improved team statistics
+- Coaching (home) page with teams and statistics
+- And so much more! (Check [Trello](https://trello.com/b/s6HjD0UO/tsoha-project-match-reporting-system-blood-bowl) for more!)
