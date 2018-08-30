@@ -40,6 +40,9 @@ class Match(Base):
         for entry in res:
             response.append(entry[0])
 
+        if(len(response)==0):  
+            response.append(0)
+
         return response
     
     @staticmethod
@@ -48,10 +51,13 @@ class Match(Base):
                     " WHERE winner_id = :id ").params(id=team_id)
         
         res = db.engine.execute(stmt)
-        response = []
+        response = []        
 
         for entry in res:
             response.append(entry[0])
+
+        if(len(response)==0):  
+            response.append(0)
 
         return response
 
@@ -65,6 +71,9 @@ class Match(Base):
 
         for entry in res:
             response.append(entry[0])
+
+        if(len(response)==0):  
+            response.append(0)
 
         return response
     
@@ -80,5 +89,8 @@ class Match(Base):
 
         for entry in res:
             response.append(entry[0])
+
+        if(len(response)==0):  
+            response.append(0)
 
         return response
