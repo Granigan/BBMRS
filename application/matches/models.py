@@ -90,7 +90,7 @@ class Match(Base):
         for entry in res:
             response.append(entry[0])
 
-        if(len(response)==0):  
-            response.append(0)
+        if(response[0]== None):  
+            response[0] = 0
 
         return response
