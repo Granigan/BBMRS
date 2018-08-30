@@ -46,6 +46,12 @@ class Match(Base):
         return response
     
     @staticmethod
+    def delete_match_history(team_id):
+        stmt = text("DELETE FROM match"
+                    " WHERE winner_id = :id OR loser_id = :id").params(id=team_id)
+        db.engine.execute(stmt)
+
+    @staticmethod
     def find_wins_by_team(team_id):
         stmt = text("SELECT count(id) FROM match"
                     " WHERE winner_id = :id ").params(id=team_id)
@@ -78,7 +84,6 @@ class Match(Base):
         return response
     
     @staticmethod
-    # do not call this without first checking that team has at least one match
     def find_win_percentage_by_team(team_id):
         stmt = text("SELECT (count(winner_id)* 100.0 /"
                     " (SELECT count(*) FROM match"
@@ -93,3 +98,4 @@ class Match(Base):
             response.append(entry[0])
 
         return response
+
