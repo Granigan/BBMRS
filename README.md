@@ -13,12 +13,9 @@ You can try out the system on [Heroku](http://bb-mrs.herokuapp.com) with the fol
 
 ## Weekly Milestones
 [See all the weekly reports here](https://github.com/Granigan/BBMRS/blob/master/documentation/weekly_progress.md)
-### "Week" 6
-[Matches can now be reported](http://bb-mrs.herokuapp.com/match/new), and the new [Team page](http://bb-mrs.herokuapp.com/teams/details_1) shows the match history and statistics for each team.
-Database diagram was updated to match the database in use:
-![db diagram](https://github.com/Granigan/BBMRS/blob/master/documentation/images/db_diagram2.png)
-Additionally there were small fixes here and there, and the documents were updated to better match the project's status.
 
+### FINAL WEEK
+When preparing for the demo, couple of issues popped up. These are now fixed, along with some quick improvements.
 
 ## Documentation
 - [Installation Guide](https://github.com/Granigan/BBMRS/blob/master/documentation/install.md)
@@ -54,6 +51,11 @@ There are four main tables:
 Additionally, between Contest and Team tables, a connecting ContestTeam table (C) is required.
 
 ![db diagram](https://github.com/Granigan/BBMRS/blob/master/documentation/images/db_diagram2.png)
+
+## Remaining Issues
+- Team can face itself in a match
+- Teams and Contests can have identical names. (Users cannot.)
+- 'Resurrection' rules are not enforced, and practically have no effect.
 
 ## (Missing) Features for Future Versions
 - Choose race from a selection
