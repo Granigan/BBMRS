@@ -78,6 +78,7 @@ class Match(Base):
         return response
     
     @staticmethod
+    # do not call this without first checking that team has at least one match
     def find_win_percentage_by_team(team_id):
         stmt = text("SELECT (count(winner_id)* 100.0 /"
                     " (SELECT count(*) FROM match"
@@ -85,12 +86,10 @@ class Match(Base):
                     " FROM match WHERE winner_id = :id").params(id=team_id)
         
         res = db.engine.execute(stmt)
+
         response = []
 
         for entry in res:
             response.append(entry[0])
-
-        if(response[0]== None):  
-            response[0] = 0
 
         return response

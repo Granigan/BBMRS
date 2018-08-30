@@ -70,6 +70,8 @@ def account_details(account_id):
 @app.route("/auth/delete_account_<account_id>", methods=['POST'])
 @login_required(role="ADMIN")
 def account_delete(account_id):
+    # remove matches from history
+
     # remove teams from contests and delete them
     for team_id in Team.find_teams_by_coach(account_id):
         ContestTeam.remove_team_from_all_contests(team_id)

@@ -76,10 +76,18 @@ def teams_delete(team_id):
 def team_details(team_id):
     t = Team.query.get(team_id)
 
+    total = Match.find_total_games_played_by_team(team_id)
+
+    if(total[0] > 0):
+        percentage = Match.find_win_percentage_by_team(team_id)
+    else:
+        percentage = []
+        percentage.append(0)
+
     return render_template("teams/details.html", team = t,
         matches = Match.find_match_history(team_id),
-        total = Match.find_total_games_played_by_team(team_id),
+        total = total,
         wins = Match.find_wins_by_team(team_id),
         losses = Match.find_losses_by_team(team_id),
-        percentage = Match.find_win_percentage_by_team(team_id)
+        percentage = percentage
         )
