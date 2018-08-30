@@ -15,7 +15,7 @@ class ContestTeam(Base):
 
     @staticmethod
     def find_signed_teams_with_details(contest_id):
-        stmt = text("SELECT team.name, team.race, account.name"
+        stmt = text("SELECT team.id, team.name, team.race, account.name"
                     " FROM team, contestteam, account"
                     " WHERE contestteam.contest_id = :id" 
                     " AND contestteam.team_id = team.id" 
@@ -25,7 +25,7 @@ class ContestTeam(Base):
 
         response = []
         for row in res:
-            response.append({"name":row[0], "race":row[1], "coach":row[2]})
+            response.append({"id":row[0], "name":row[1], "race":row[2], "coach":row[3]})
 
         return response
     
